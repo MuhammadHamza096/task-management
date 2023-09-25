@@ -175,12 +175,16 @@ export default {
       const taskStore = useTaskStore();
       let formattedDate = null;
 
-      const totalTasks = taskStore.boards.reduce(
-        (count, board) => count + board.tasks.length,
-        0
-      );
+      let maxTaskId = 0;
+      for (const board of taskStore.boards) {
+        for (const task of board.tasks) {
+          if (task.id > maxTaskId) {
+            maxTaskId = task.id;
+          }
+        }
+      }
 
-      const newTaskId = totalTasks + 1;
+      const newTaskId = maxTaskId + 1;
 
       if (this.newTask.selectedDate) {
         const date = new Date(this.newTask.selectedDate);

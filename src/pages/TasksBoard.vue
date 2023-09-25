@@ -132,7 +132,7 @@ import { dateFormat } from "@/utils";
 
 export default {
   components: {
-    ProgressBar, // Register the Progress Bar component
+    ProgressBar,
     CreateTask,
     VueDatePicker,
   },
@@ -312,7 +312,6 @@ export default {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  /* Set a maximum width to control the truncation width */
-  max-width: 200px; /* Adjust the value as needed */
+  max-width: 200px; 
 }
 </style>

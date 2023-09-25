@@ -2,6 +2,11 @@
 
 ## Deployed on Vercel
 https://task-management-muhammadhamza096.vercel.app
+
+## Libraries Used
+Vue 3, Vuetify, vue-router, vue3-date-time-picker, pinia
+
+
 ## Project setup
 ```
 npm install
