@@ -112,11 +112,7 @@
 <script>
 import { useTaskStore } from "@/store/taskStore.js";
 export default {
-  props: {
-    taskViewDialogue: Boolean,
-    taskId: String,
-    id: String,
-  },
+  props: ["id"],
   data() {
     return {
       localDialogVisible: true,
@@ -138,8 +134,7 @@ export default {
   watch: {
     "$route.params.id": {
       immediate: true,
-      handler(newTaskId, oldTaskId) {
-        console.log("newTask::", newTaskId, oldTaskId);
+      handler() {
         this.fetchTaskDetails();
       },
     },
@@ -174,7 +169,6 @@ export default {
     },
 
     removeFile(fileToRemove) {
-      console.log("fileToRemove", fileToRemove);
       const index = this.task.files.indexOf(fileToRemove);
       if (index !== -1) {
         this.task.files.splice(index, 1);

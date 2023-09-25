@@ -79,7 +79,7 @@
                     <div class="card-description">
                       <div>
                         <p class="heading">Description:</p>
-                        <p>{{ task.description }}</p>
+                        <p class="truncated-description">{{ task.description }}</p>
                       </div>
                       <div>
                         <p class="heading">Estimated Time:</p>
@@ -150,12 +150,9 @@ export default {
 
   computed: {
     filteredBoards() {
-      console.log("start date::", this.dateRange.start);
-      console.log("end date::", this.dateRange.end);
       if (!this.dateRange.start || !this.dateRange.end) {
         return this.boards;
       }
-      console.log("line no 171");
 
       const startDate = new Date(this.dateRange.start);
       const endDate = new Date(this.dateRange.end);
@@ -165,7 +162,6 @@ export default {
           const taskDate = new Date(task.date);
           return taskDate >= startDate && taskDate <= endDate;
         });
-        console.log("filteredTasks", filteredTasks);
         return { ...board, tasks: filteredTasks };
       });
     },
@@ -179,7 +175,6 @@ export default {
   },
   watch: {
     $route(to) {
-      console.log("to", to);
       if (to.name === "TaskDetail") {
         this.openTaskViewDialog();
       }
@@ -208,14 +203,6 @@ export default {
       }
       return hash;
     },
-    searchTasks() {},
-    filterTasksByDate() {
-      console.log("line no 132", this.taskData);
-    },
-    createTask() {
-      console.log("line no 132", this.taskData);
-    },
-    checkMove() {},
     openDialog() {
       this.dialogVisible = true;
     },
@@ -251,15 +238,12 @@ export default {
     },
     updateDateRange(value) {
       if (value) {
-        console.log("value", value, value[0]);
-
         const start = dateFormat(value[0]);
         const end = dateFormat(value[1]);
         this.dateRange = { ...this.dateRange, start, end };
       } else {
         this.dateRange = { start: null, end: null };
       }
-      console.log("Updated date range:", this.dateRange);
     },
   },
 };
@@ -323,5 +307,12 @@ export default {
   background: transparent !important;
   border: none;
   border-bottom: 1px solid darkgrey;
+}
+.truncated-description {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  /* Set a maximum width to control the truncation width */
+  max-width: 200px; /* Adjust the value as needed */
 }
 </style>

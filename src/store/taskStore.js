@@ -1,4 +1,3 @@
-
 import { defineStore } from "pinia";
 
 export const useTaskStore = defineStore({
@@ -27,18 +26,16 @@ export const useTaskStore = defineStore({
       }
     },
     getTaskById(taskId) {
-      console.log("getTaskById", taskId);
       for (const board of this.boards) {
         const foundTask = board.tasks.find((task) => task.id == taskId);
-        console.log("foundTask", foundTask);
         if (foundTask) {
           return foundTask;
         }
       }
-      return null; 
+      return null;
     },
     addCommentToTask(taskId, comment) {
-      const task = this.getTaskById(taskId); 
+      const task = this.getTaskById(taskId);
       if (task) {
         if (!task.comments) {
           task.comments = [];
@@ -61,20 +58,18 @@ export const useTaskStore = defineStore({
       for (const board of this.boards) {
         const taskIndex = board.tasks.findIndex((task) => task.id == taskId);
         if (taskIndex !== -1) {
-          board.tasks.splice(taskIndex, 1); 
-          break; 
+          board.tasks.splice(taskIndex, 1);
+          break;
         }
       }
     },
     taskExists(taskId) {
-      
-      console.log('taskId',taskId)
       for (const board of this.boards) {
         if (board.tasks.some((task) => task.id == taskId)) {
-          return true; 
+          return true;
         }
       }
-      return false; 
+      return false;
     },
   },
 });
