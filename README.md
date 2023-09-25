@@ -1,5 +1,7 @@
 # task-management
 
+## Deployed on Vercel
+https://task-management-muhammadhamza096.vercel.app
 ## Project setup
 ```
 npm install
